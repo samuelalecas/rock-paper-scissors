@@ -1,6 +1,9 @@
+//---------------- VARIABLES -------------------
 var CHOICES = ["Rock", "Paper", "Scissors"];
 var pl_score = 0,
     comp_score = 0;
+
+//---------------- FUNCTIONS -------------------
 
 function toTitleCase(txt) {
     // Convert string to Title Case
@@ -25,11 +28,18 @@ function playRound(playerSelection, computerSelection) {
     // Conditions
     if (pl_select === comp_select) {
         return `It's a Draw! ${pl_select_title} vs ${computerSelection} is a draw.`;
+
     } else if (pl_select === "rock" && comp_select === "scissors"
         || pl_select === "paper" && comp_select === "rock"
         || pl_select === "scissors" && comp_select === "paper") {
         pl_score += 1;
         return `You Win! ${pl_select_title} beats ${computerSelection}.`;
+
+    // Validation line: when an invalid word it's typed
+    } else if (CHOICES.includes(pl_select_title) === false) {
+        comp_score += 1;
+        return `You Lose! Computer wins an additional point due to ${pl_select_title} is not a valid word.`;
+        
     } else {
         comp_score += 1;
         return `You Lose! ${computerSelection} beats ${pl_select_title}.`;
@@ -49,13 +59,16 @@ function winner(pl_score, comp_score) {
 }
 
 function game() {
+    // 5 rounds to play
     for (let i = 0; i < 5; i++) {
         let playerSelection = prompt("Rock, Paper or Scissors?: ")
         let computerSelection = getComputerChoice();
         console.log(playRound(playerSelection, computerSelection));
     }
+    // Who's the winner?
     console.log(winner(pl_score, comp_score));
 }
 
+//-------------------- START--------------------
 game();
 
