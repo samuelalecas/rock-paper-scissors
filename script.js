@@ -1,5 +1,6 @@
 //---------------- VARIABLES -------------------
 var CHOICES = ["Rock", "Paper", "Scissors"];
+var ROUNDS = 5;
 var pl_score = 0,
     comp_score = 0;
 
@@ -7,17 +8,21 @@ var pl_score = 0,
 
 function toTitleCase(txt) {
     // Convert string to Title Case
+
     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
 }
 
 function getComputerChoice() {
     // Computer choose a random option from array
+
     let random_number = Math.floor(Math.random() * CHOICES.length);
     let computer_choice = CHOICES[random_number];
     return computer_choice;
 }
 
 function playRound(playerSelection, computerSelection) {
+    //Players choices are compared to define who wins the current round
+
     let pl_select_title = toTitleCase(playerSelection)
     let pl_select = playerSelection.toLowerCase();
     let comp_select = computerSelection.toLowerCase();
@@ -39,7 +44,7 @@ function playRound(playerSelection, computerSelection) {
     } else if (CHOICES.includes(pl_select_title) === false) {
         comp_score += 1;
         return `You Lose! Computer wins an additional point due to ${pl_select_title} is not a valid word.`;
-        
+
     } else {
         comp_score += 1;
         return `You Lose! ${computerSelection} beats ${pl_select_title}.`;
@@ -47,6 +52,7 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function winner(pl_score, comp_score) {
+    // Winner announcement comparing scores before.
     console.log(`This is the final result:\nYou: ${pl_score} vs Computer: ${comp_score}.`)
 
     if (pl_score === comp_score) {
@@ -59,13 +65,13 @@ function winner(pl_score, comp_score) {
 }
 
 function game() {
-    // 5 rounds to play
-    for (let i = 0; i < 5; i++) {
+    // Game with X rounds to play
+    for (let i = 0; i < ROUNDS; i++) {
         let playerSelection = prompt("Rock, Paper or Scissors?: ")
         let computerSelection = getComputerChoice();
         console.log(playRound(playerSelection, computerSelection));
     }
-    // Who's the winner?
+
     console.log(winner(pl_score, comp_score));
 }
 
