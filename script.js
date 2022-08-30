@@ -1,10 +1,16 @@
 //---------------- VARIABLES -------------------
 var CHOICES = ["Rock", "Paper", "Scissors"];
-var ROUNDS = 5;
+var ROUNDS = 1;
 var pl_score = 0,
     comp_score = 0;
 
 //---------------- FUNCTIONS -------------------
+
+function writeTextOnDiv(id, element, text) {
+    let content = document.createElement(element);
+    content.textContent = text;
+    document.querySelector(id).appendChild(content);
+}
 
 function toTitleCase(txt) {
     // Convert string to Title Case
@@ -28,6 +34,11 @@ function playRound(playerSelection, computerSelection) {
     let comp_select = computerSelection.toLowerCase();
 
     // Computer selection is shown
+    writeTextOnDiv(
+        "#pc-text",
+        "p",
+        `Computer choose ${computerSelection}.`
+    );
     console.log(`Computer choose ${computerSelection}.`);
 
     // Conditions
@@ -40,7 +51,7 @@ function playRound(playerSelection, computerSelection) {
         pl_score += 1;
         return `You Win! ${pl_select_title} beats ${computerSelection}.`;
 
-    // Validation line: when an invalid word it's typed
+        // Validation line: when an invalid word it's typed
     } else if (CHOICES.includes(pl_select_title) === false) {
         comp_score += 1;
         return `You Lose! Computer wins an additional point due to ${pl_select_title} is not a valid word.`;
@@ -52,9 +63,6 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function winner(pl_score, comp_score) {
-    // Winner announcement comparing scores before.
-    console.log(`This is the final result:\nYou: ${pl_score} vs Computer: ${comp_score}.`)
-
     if (pl_score === comp_score) {
         return `It's a draw.`
     } else if (pl_score > comp_score) {
@@ -69,10 +77,14 @@ function game() {
     for (let i = 0; i < ROUNDS; i++) {
         let playerSelection = prompt("Rock, Paper or Scissors?: ")
         let computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
-    }
+        let result = playRound(playerSelection, computerSelection);
 
-    console.log(winner(pl_score, comp_score));
+        writeTextOnDiv("#result", "p", result);
+        console.log(result);
+    }
+    // Winner announcement comparing scores before.
+    const whoIsTheWinner = winner(pl_score, comp_score);
+    writeTextOnDiv("#winner", "h1", `This is the final result:\nYou: ${pl_score} vs Computer: ${comp_score}. ${whoIsTheWinner}`);
 }
 
 //-------------------- START--------------------
