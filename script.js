@@ -1,6 +1,7 @@
 //---------------- VARIABLES -------------------
-var CHOICES = ["Rock", "Paper", "Scissors"];
+var CHOICES = ["rock", "paper", "scissors"];
 var ROUNDS = 1;
+var playerSelection = "";
 var pl_score = 0,
     comp_score = 0;
 
@@ -23,6 +24,7 @@ function getComputerChoice() {
 
     let random_number = Math.floor(Math.random() * CHOICES.length);
     let computer_choice = CHOICES[random_number];
+    document.getElementById("pc-choice").src=`svg/${computer_choice}.svg`;
     return computer_choice;
 }
 
@@ -72,10 +74,26 @@ function winner(pl_score, comp_score) {
     }
 }
 
+function createButton(choice){
+    const rockButton = document.querySelector(`#${choice}`);
+    rockButton.addEventListener('click',function pressedButton() {
+        playerSelection = choice;
+        console.log(playerSelection)
+        document.getElementById("my-choice").src=`svg/${choice}.svg`;
+
+    });
+    rockButton.addEventListener('mouseover',() => document.getElementById(choice).style.cursor = "pointer");
+}
+
 function game() {
+
+    createButton("rock");
+    createButton("paper");
+    createButton("scissors");
+
     // Game with X rounds to play
     for (let i = 0; i < ROUNDS; i++) {
-        let playerSelection = prompt("Rock, Paper or Scissors?: ")
+        // let playerSelection = prompt("Rock, Paper or Scissors?: ")
         let computerSelection = getComputerChoice();
         let result = playRound(playerSelection, computerSelection);
 
