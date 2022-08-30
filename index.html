@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,11 +8,55 @@
     <link rel="stylesheet" href="style.css">
     <title>Rock Paper Scissors</title>
 </head>
+
 <body>
-    <div id="your-text"></div>
+    <div class="container">
+
+        <h1>Rock, Paper, Scissors</h1>
+
+        <div class="ring">
+            <div id="my-choice">
+                <img src="svg/rock.svg" alt="" class="left">
+                <p>You</p>
+            </div>
+
+            <div id="counter">
+                0 - 0
+            </div>
+
+            <div id="pc-choice">
+                <img src="svg/rock.svg" alt="" class="right">
+                <p>Computer</p>
+            </div>
+        </div>
+
+        <h2 id="result">Choose one</h2>
+
+        <div class="buttons">
+            <div id="rock" class="button">
+                <img src="svg/rock.svg" alt="">
+                Rock
+            </div>
+            <div id="paper" class="button">
+                <img src="svg/paper.svg" alt="">
+                Paper
+            </div>
+            <div id="scissors" class="button">
+                <img src="svg/scissors.svg" alt="">
+                Scissors
+            </div>
+        </div>
+
+        <footer>
+            ©2022 Website by Samuel Alegre
+        </footer>
+
+    </div>
+    <!-- <div id="your-text"></div>
     <div id="pc-text"></div>
     <div id="result"></div>
-    <div id="winner"></div>
-    <script src="script.js"></script>
+    <div id="winner"></div> -->
+    <!-- <script src="script.js"></script> -->
 </body>
+
 </html>
