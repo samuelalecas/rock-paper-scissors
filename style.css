@@ -3,7 +3,7 @@
 * {
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
-    /* border: 1px solid rgb(1, 195, 209); */
+    /* border: 1px solid rgb(1, 195, 209);/ */
 
 }
 
@@ -38,19 +38,14 @@ h1 {
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    margin: 40px 50px;
-    width: 100px;
-    height: 150px;
+    /* margin: 40px 50px; */
+    width: 180px;
+    height: 200px;
 
 }
 
-img.left, img.right {
-    animation: 1s;
-    rotate: -90deg;
-}
-
-img.left {
-    transform: scaleY(-1);
+img.right {
+    transform: scaleX(-1);
 }
 
 p{

@@ -24,7 +24,7 @@ function getComputerChoice() {
 
     let random_number = Math.floor(Math.random() * CHOICES.length);
     let computer_choice = CHOICES[random_number];
-    document.getElementById("pc-choice").src=`svg/${computer_choice}.svg`;
+    document.getElementById("pc-choice").src=`svg/${computer_choice}-xl.svg`;
     return computer_choice;
 }
 
@@ -79,7 +79,7 @@ function createButton(choice){
     rockButton.addEventListener('click',function pressedButton() {
         playerSelection = choice;
         console.log(playerSelection)
-        document.getElementById("my-choice").src=`svg/${choice}.svg`;
+        document.getElementById("my-choice").src=`svg/${choice}-xl.svg`;
 
     });
     rockButton.addEventListener('mouseover',() => document.getElementById(choice).style.cursor = "pointer");
