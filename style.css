@@ -13,6 +13,25 @@
     flex-direction: column;
 }
 
+.pop-up {
+    opacity: .8;
+    z-index: 1;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    top: 120px;
+    margin-left:-250px;
+    min-width: 500px;
+    height: 450px;
+}
+
+.pop-up .final-result{
+    font-size: 30px;
+    font-weight: 600;
+}
+
 h1 {
     font-weight: 700;
     font-size: 32px;
@@ -35,7 +54,7 @@ h1 {
     width: 100px;
 }
 
-.counter div{
+.counter div {
     width: 40px;
 }
 
@@ -54,8 +73,8 @@ img.right {
     transform: scaleX(-1);
 }
 
-p{
-    margin:0;
+p {
+    margin: 0;
 }
 
 .button {

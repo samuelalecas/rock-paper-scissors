@@ -23,16 +23,14 @@ function getComputerChoice() {
     // Computer choose a random option from array
     let random_number = Math.floor(Math.random() * CHOICES.length);
     let computer_choice = CHOICES[random_number];
-    document.getElementById("pc-choice").src=`svg/${computer_choice}-xl.svg`;
+    document.getElementById("pc-choice").src = `svg/${computer_choice}-xl.svg`;
     return computer_choice;
 }
 
 function whoWinsThisRound(playerSelection, computerSelection) {
 
-
     let pl_select = toTitleCase(playerSelection);
     let comp_select = toTitleCase(computerSelection);
-
 
     // Conditions
     if (pl_select === comp_select) {
@@ -49,34 +47,50 @@ function whoWinsThisRound(playerSelection, computerSelection) {
         return `You Lose!`;
     }
 }
-
-function winner(pl_score, comp_score) {
-    if (pl_score === comp_score) {
-        return `It's a draw.`
-    } else if (pl_score > comp_score) {
-        return `Congratulations, you win!`
-    } else {
-        return `Sorry, you lose.`
+function showPopUp(text) {
+    const hideDiv = document.getElementById("pop-up");
+    const popUp = document.createElement('div');
+    const popUpText = document.createElement('div');
+    popUp.classList.add('pop-up');
+    popUpText.classList.add('final-result');
+    popUpText.textContent = text;
+    popUp.appendChild(popUpText);
+    hideDiv.appendChild(popUp);
+}
+function isTheWinner(pl_score, comp_score) {
+    if (pl_score === 5 || comp_score === 5) {
+        let textResult;
+        if (pl_score === comp_score) {
+            textResult = `It's a draw.`
+        } else if (pl_score > comp_score) {
+            textResult = `Congratulations, you win!`
+        } else {
+            textResult = `Sorry, you lose.`
+        }
+        showPopUp(textResult);
     }
 }
 
-function createButton(choice){
+function createButton(choice) {
     const rockButton = document.querySelector(`#${choice}`);
-    rockButton.addEventListener('click',function startRound() {
+    rockButton.addEventListener('click', function startRound() {
         playerSelection = choice;
         computerSelection = getComputerChoice();
-        document.getElementById("my-choice").src=`svg/${choice}-xl.svg`;
+        document.getElementById("my-choice").src = `svg/${choice}-xl.svg`;
         let result = whoWinsThisRound(playerSelection, computerSelection);
+
         document.getElementById("result").textContent = result;
         document.getElementById("your-counter").textContent = `${pl_score}`;
         document.getElementById("pc-counter").textContent = `${comp_score}`;
+
+        isTheWinner(pl_score, comp_score);
     });
-    rockButton.addEventListener('mouseover',() => document.getElementById(choice).style.cursor = "pointer");
+    rockButton.addEventListener('mouseover', () => document.getElementById(choice).style.cursor = "pointer");
 }
 
-function newRound(){
-    document.getElementById("my-choice").src=`png/waiting.png`;
-    document.getElementById("pc-choice").src=`png/waiting.png`;
+function newRound() {
+    document.getElementById("my-choice").src = `png/waiting.png`;
+    document.getElementById("pc-choice").src = `png/waiting.png`;
 }
 
 function game() {
@@ -84,9 +98,6 @@ function game() {
     createButton("rock");
     createButton("paper");
     createButton("scissors");
-    // // Winner announcement comparing scores before.
-    // const whoIsTheWinner = winner(pl_score, comp_score);
-    // writeTextOnDiv("#winner", "h1", `This is the final result:\nYou: ${pl_score} vs Computer: ${comp_score}. ${whoIsTheWinner}`);
 }
 
 
