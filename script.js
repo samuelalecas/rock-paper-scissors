@@ -1,6 +1,5 @@
 //---------------- VARIABLES -------------------
 var CHOICES = ["rock", "paper", "scissors"];
-var ROUNDS = 1;
 var playerSelection = "";
 var computerSelection = ""
 var pl_score = 0,
@@ -37,17 +36,17 @@ function whoWinsThisRound(playerSelection, computerSelection) {
 
     // Conditions
     if (pl_select === comp_select) {
-        return `It's a Draw! ${pl_select} vs ${comp_select} is a draw.`;
+        return `It's a Draw!`;
 
     } else if (pl_select === "Rock" && comp_select === "Scissors"
         || pl_select === "Paper" && comp_select === "Rock"
         || pl_select === "Scissors" && comp_select === "Paper") {
         pl_score += 1;
-        return `You Win! ${pl_select} beats ${comp_select}.`;
+        return `You Win!`;
 
     } else {
         comp_score += 1;
-        return `You Lose! ${comp_select} beats ${pl_select}.`;
+        return `You Lose!`;
     }
 }
 
@@ -64,13 +63,13 @@ function winner(pl_score, comp_score) {
 function createButton(choice){
     const rockButton = document.querySelector(`#${choice}`);
     rockButton.addEventListener('click',function startRound() {
-        computerSelection = getComputerChoice();
         playerSelection = choice;
-        console.log(playerSelection, computerSelection);
+        computerSelection = getComputerChoice();
         document.getElementById("my-choice").src=`svg/${choice}-xl.svg`;
         let result = whoWinsThisRound(playerSelection, computerSelection);
         document.getElementById("result").textContent = result;
-
+        document.getElementById("your-counter").textContent = `${pl_score}`;
+        document.getElementById("pc-counter").textContent = `${comp_score}`;
     });
     rockButton.addEventListener('mouseover',() => document.getElementById(choice).style.cursor = "pointer");
 }
@@ -81,17 +80,15 @@ function newRound(){
 }
 
 function game() {
-    // Game with X rounds to play
-    for (let i = 0; i < ROUNDS; i++) {
-        newRound()
-        createButton("rock");
-        createButton("paper");
-        createButton("scissors");
-    }
+    newRound()
+    createButton("rock");
+    createButton("paper");
+    createButton("scissors");
     // // Winner announcement comparing scores before.
     // const whoIsTheWinner = winner(pl_score, comp_score);
     // writeTextOnDiv("#winner", "h1", `This is the final result:\nYou: ${pl_score} vs Computer: ${comp_score}. ${whoIsTheWinner}`);
 }
+
 
 //-------------------- START--------------------
 game();
